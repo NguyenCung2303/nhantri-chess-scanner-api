@@ -28,7 +28,9 @@ def render_pdf_to_images(pdf_path: Path, page_dir: Path):
     doc = fitz.open(pdf_path)
     page_paths = []
 
-    for page_index in range(START_PAGE - 1, len(doc)):
+    END_PAGE = 6
+
+for page_index in range(START_PAGE - 1, min(len(doc), END_PAGE)):
         page = doc[page_index]
         matrix = fitz.Matrix(ZOOM, ZOOM)
         pix = page.get_pixmap(matrix=matrix)
